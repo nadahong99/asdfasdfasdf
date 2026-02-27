@@ -10,4 +10,5 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
         run: |
-          xcrun altool --list-providers -u "$APPLE_ID" -p "$APPLE_PASSWORD"
+          xcrun notarytool store-credentials "test" --apple-id "$APPLE_ID" --password "$APPLE_PASSWORD" --team-id "" 2>&1 || true
+          security find-identity -v
