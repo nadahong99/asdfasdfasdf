@@ -1,0 +1,13 @@
+name: Check Team ID
+on: [push]
+
+jobs:
+  check:
+    runs-on: macos-latest
+    steps:
+      - name: Check Team ID
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+        run: |
+          xcrun altool --list-providers -u "$APPLE_ID" -p "$APPLE_PASSWORD"
